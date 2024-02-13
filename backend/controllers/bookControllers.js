@@ -1,12 +1,17 @@
 import catchAsyncErrors from "../middlewares/catchAsyncErrors.js";
 import Book from "../models/book.js";
+import APIFilters from "../utils/apiFilters.js";
 import ErrorHandler from "../utils/errorHandler.js";
 
 // Get all books => /api/books
 export const getBooks = catchAsyncErrors(async (req, res) => {
-    const books = await Book.find();
+    const apiFilters = new APIFilters(Book, req.query).search();
+
+    let books = await apiFilters.query;
+    let filteredBooksCount = books.length;
 
     res.status(200).json({
+        filteredBooksCount,
         books,
     });
 });
