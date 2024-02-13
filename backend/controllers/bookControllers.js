@@ -5,7 +5,7 @@ import ErrorHandler from "../utils/errorHandler.js";
 
 // Get all books => /api/books
 export const getBooks = catchAsyncErrors(async (req, res) => {
-    const apiFilters = new APIFilters(Book, req.query).search();
+    const apiFilters = new APIFilters(Book, req.query).search().filters();
 
     let books = await apiFilters.query;
     let filteredBooksCount = books.length;
