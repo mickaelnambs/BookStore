@@ -5,12 +5,17 @@ import ErrorHandler from "../utils/errorHandler.js";
 
 // Get all books => /api/books
 export const getBooks = catchAsyncErrors(async (req, res) => {
+    const resPerPage = 4;
     const apiFilters = new APIFilters(Book, req.query).search().filters();
 
     let books = await apiFilters.query;
     let filteredBooksCount = books.length;
 
+    apiFilters.pagination(resPerPage);
+    books = await apiFilters.query.clone();
+
     res.status(200).json({
+        resPerPage,
         filteredBooksCount,
         books,
     });
