@@ -32,7 +32,7 @@ export const newBook = catchAsyncErrors(async (req, res) => {
 });
 
 // Get single book details => /api/books/:id
-export const getBookDetails = catchAsyncErrors(async (req, res) => {
+export const getBookDetails = catchAsyncErrors(async (req, res, next) => {
     const book = await Book.findById(req?.params?.id);
 
     if (!book) {
@@ -45,7 +45,7 @@ export const getBookDetails = catchAsyncErrors(async (req, res) => {
 });
 
 // Update book => /api/admin/books/:id
-export const updateBook = catchAsyncErrors(async (req, res) => {
+export const updateBook = catchAsyncErrors(async (req, res, next) => {
     let book = await Book.findById(req?.params?.id);
 
     if (!book) {
@@ -60,7 +60,7 @@ export const updateBook = catchAsyncErrors(async (req, res) => {
 });
 
 // Delete product => /api/admin/books/:id
-export const deleteBook = catchAsyncErrors(async (req, res) => {
+export const deleteBook = catchAsyncErrors(async (req, res, next) => {
     let book = await Book.findById(req?.params?.id);
 
     if (!book) {
@@ -71,5 +71,85 @@ export const deleteBook = catchAsyncErrors(async (req, res) => {
 
     res.status(200).json({
         message: "Book deleted",
+    });
+});
+
+// Create/Update book review => /api/reviews
+export const createBookReview = catchAsyncErrors(async (req, res, next) => {
+    const { rating, comment, bookId } = req.body;
+
+    const review = {
+        user: req?.user?._id,
+        rating: Number(rating),
+        comment,
+    }
+
+    const book = await Book.findById(bookId);
+
+    if (!book) {
+        return next(new ErrorHandler('Book not found', 404));
+    }
+
+    const isReviewed = book?.reviews.find((r) => r.user.toString() === req?.user?._id.toString());
+
+    if (isReviewed) {
+        book.reviews.forEach((review) => {
+            if (review?.user?.toString() === req?.user?._id.toString()) {
+                review.comment = comment;
+                review.rating = rating;
+            }
+        });
+    } else {
+        book.reviews.push(review);
+        book.numOfReviews = book.reviews.length;
+    }
+
+    book.ratings = book.reviews.reduce((acc, item) => item.rating + acc, 0) / book.reviews.length;
+
+    await book.save({ validateBeforeSave: false });
+
+    res.status(200).json({
+        success: true,
+    });
+});
+
+// Get book reviews => /api/reviews
+export const getBookReviews = catchAsyncErrors(async (req, res, next) => {
+    const book = await Book.findById(req.query.id);
+
+    if (!book) {
+        return next(new ErrorHandler('Book not found', 404));
+    }
+
+    res.status(200).json({
+        reviews: book.reviews,
+    });
+});
+
+// Delete book review - ADMIN => /api/reviews
+export const deleteReview = catchAsyncErrors(async (req, res, next) => {
+    let book = await Book.findById(req.query.bookId);
+
+    if (!book) {
+        return next(new ErrorHandler('Book not found', 404));
+    }
+
+    const reviews = book?.reviews?.filter(
+        (review) => review._id.toString() !== req?.query?.id.toString()
+    );
+
+    const numOfReviews = reviews.length;
+
+    const ratings = numOfReviews === 0 ? 0 : book.reviews.reduce((acc, item) => item.rating + acc, 0) / numOfReviews;
+
+    book = await Book.findByIdAndUpdate(
+        req.query.bookId,
+        { reviews, numOfReviews, ratings },
+        { new: true }
+    );
+
+    res.status(200).json({
+        success: true,
+        book,
     });
 });

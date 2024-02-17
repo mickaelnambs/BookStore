@@ -1,5 +1,5 @@
 import express from 'express';
-import { deleteBook, getBookDetails, getBooks, newBook, updateBook } from '../controllers/bookControllers.js';
+import { createBookReview, deleteBook, deleteReview, getBookDetails, getBookReviews, getBooks, newBook, updateBook } from '../controllers/bookControllers.js';
 import { authorizedRoles, isAuthenticatedUser } from '../middlewares/auth.js';
 
 const router = express.Router();
@@ -17,5 +17,14 @@ router
 router
     .route("/admin/books/:id")
     .delete(isAuthenticatedUser, authorizedRoles("admin"), deleteBook);
+
+router
+    .route("/reviews")
+    .get(isAuthenticatedUser, getBookReviews)
+    .put(isAuthenticatedUser, createBookReview);
+
+ router
+    .route("/admin/reviews")
+    .delete(isAuthenticatedUser, authorizedRoles("admin"), deleteReview)
 
 export default router;
