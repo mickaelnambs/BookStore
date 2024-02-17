@@ -23,6 +23,7 @@ export const getBooks = catchAsyncErrors(async (req, res) => {
 
 // Create new book => /api/admin/books
 export const newBook = catchAsyncErrors(async (req, res) => {
+    req.body.user = req.user._id;
     const book = await Book.create(req.body);
 
     res.status(200).json({
