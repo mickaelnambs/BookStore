@@ -22,3 +22,4 @@ Thumbs.db
 
 # Optional: Build output
 /build/
+backend/config/config.env
