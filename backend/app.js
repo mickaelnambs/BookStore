@@ -22,9 +22,11 @@ app.use(cookieParser());
 // Import all routes.
 import bookRoutes from './routes/books.js';
 import authRoutes from './routes/auth.js';
+import orderRoutes from './routes/order.js';
 
 app.use("/api/", bookRoutes);
 app.use("/api/", authRoutes);
+app.use("/api/", orderRoutes);
 
 // Using error middleware.
 app.use(errorMiddleware);
