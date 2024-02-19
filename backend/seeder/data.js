@@ -9,7 +9,17 @@ export default [
         stock: 100,
         numOfReviews: 1500,
         isbn: "978-0-7475-3269-6",
-        author: "J.K. Rowling"
+        author: "J.K. Rowling",
+        images: [
+            {
+                public_id: "bookStore/mq0zpyzmzqokphs9m9we",
+                url: "https://picsum.photos/200/300?random=1",
+            },
+            {
+                public_id: "bookStore/pkyy8rifxpesiwpy23kk",
+                url: "https://picsum.photos/200/300?random=2",
+            },
+        ],
     },
     {
         name: "To Kill a Mockingbird",
@@ -21,8 +31,19 @@ export default [
         stock: 75,
         numOfReviews: 1200,
         isbn: "978-0-06-112008-4",
-        author: "Harper Lee"
+        author: "Harper Lee",
+        images: [
+            {
+                public_id: "bookStore/mq0zpyzmzqokphs9m9we",
+                url: "https://picsum.photos/200/300?random=3",
+            },
+            {
+                public_id: "bookStore/pkyy8rifxpesiwpy23kk",
+                url: "https://picsum.photos/200/300?random=4",
+            },
+        ],
     },
+    // Ajoutez les autres livres avec leurs images ici...
     {
         name: "The Great Gatsby",
         price: 9.99,
@@ -33,7 +54,17 @@ export default [
         stock: 50,
         numOfReviews: 800,
         isbn: "978-0-7432-7356-5",
-        author: "F. Scott Fitzgerald"
+        author: "F. Scott Fitzgerald",
+        images: [
+            {
+                public_id: "bookStore/mq0zpyzmzqokphs9m9we",
+                url: "https://picsum.photos/200/300?random=5",
+            },
+            {
+                public_id: "bookStore/pkyy8rifxpesiwpy23kk",
+                url: "https://picsum.photos/200/300?random=6",
+            },
+        ],
     },
     {
         name: "1984",
@@ -45,7 +76,17 @@ export default [
         stock: 60,
         numOfReviews: 950,
         isbn: "978-0-452-28423-4",
-        author: "George Orwell"
+        author: "George Orwell",
+        images: [
+            {
+                public_id: "bookStore/mq0zpyzmzqokphs9m9we",
+                url: "https://picsum.photos/200/300?random=7",
+            },
+            {
+                public_id: "bookStore/pkyy8rifxpesiwpy23kk",
+                url: "https://picsum.photos/200/300?random=8",
+            },
+        ],
     },
     {
         name: "The Catcher in the Rye",
@@ -57,7 +98,17 @@ export default [
         stock: 80,
         numOfReviews: 1100,
         isbn: "978-0-316-76948-0",
-        author: "J.D. Salinger"
+        author: "J.D. Salinger",
+        images: [
+            {
+                public_id: "bookStore/mq0zpyzmzqokphs9m9we",
+                url: "https://picsum.photos/200/300?random=9",
+            },
+            {
+                public_id: "bookStore/pkyy8rifxpesiwpy23kk",
+                url: "https://picsum.photos/200/300?random=10",
+            },
+        ],
     },
     {
         name: "Pride and Prejudice",
@@ -69,7 +120,17 @@ export default [
         stock: 90,
         numOfReviews: 1350,
         isbn: "978-0-14-143951-8",
-        author: "Jane Austen"
+        author: "Jane Austen",
+        images: [
+            {
+                public_id: "bookStore/mq0zpyzmzqokphs9m9we",
+                url: "https://picsum.photos/200/300?random=11",
+            },
+            {
+                public_id: "bookStore/pkyy8rifxpesiwpy23kk",
+                url: "https://picsum.photos/200/300?random=12",
+            },
+        ],
     },
     {
         name: "The Lord of the Rings",
@@ -81,7 +142,17 @@ export default [
         stock: 70,
         numOfReviews: 1700,
         isbn: "978-0-618-15396-1",
-        author: "J.R.R. Tolkien"
+        author: "J.R.R. Tolkien",
+        images: [
+            {
+                public_id: "bookStore/mq0zpyzmzqokphs9m9we",
+                url: "https://picsum.photos/200/300?random=13",
+            },
+            {
+                public_id: "bookStore/pkyy8rifxpesiwpy23kk",
+                url: "https://picsum.photos/200/300?random=14",
+            },
+        ],
     },
     {
         name: "Jane Eyre",
@@ -93,7 +164,17 @@ export default [
         stock: 55,
         numOfReviews: 900,
         isbn: "978-0-14-144114-6",
-        author: "Charlotte Brontë"
+        author: "Charlotte Brontë",
+        images: [
+            {
+                public_id: "bookStore/mq0zpyzmzqokphs9m9we",
+                url: "https://picsum.photos/200/300?random=15",
+            },
+            {
+                public_id: "bookStore/pkyy8rifxpesiwpy23kk",
+                url: "https://picsum.photos/200/300?random=16",
+            },
+        ],
     },
     {
         name: "The Hobbit",
@@ -105,7 +186,17 @@ export default [
         stock: 65,
         numOfReviews: 1000,
         isbn: "978-0-618-00221-4",
-        author: "J.R.R. Tolkien"
+        author: "J.R.R. Tolkien",
+        images: [
+            {
+                public_id: "bookStore/mq0zpyzmzqokphs9m9we",
+                url: "https://picsum.photos/200/300?random=17",
+            },
+            {
+                public_id: "bookStore/pkyy8rifxpesiwpy23kk",
+                url: "https://picsum.photos/200/300?random=18",
+            },
+        ],
     },
     {
         name: "Wuthering Heights",
@@ -117,6 +208,16 @@ export default [
         stock: 85,
         numOfReviews: 1250,
         isbn: "978-0-14-143955-6",
-        author: "Emily Brontë"
+        author: "Emily Brontë",
+        images: [
+            {
+                public_id: "bookStore/mq0zpyzmzqokphs9m9we",
+                url: "https://picsum.photos/200/300?random=19",
+            },
+            {
+                public_id: "bookStore/pkyy8rifxpesiwpy23kk",
+                url: "https://picsum.photos/200/300?random=20",
+            },
+        ],
     }
-]
+];
