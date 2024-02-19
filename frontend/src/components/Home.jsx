@@ -1,11 +1,23 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import MetaData from './layouts/MetaData';
 import { useGetBooksQuery } from '../redux/api/booksApi';
 import BookItem from './book/BookItem';
 import Loader from './layouts/Loader';
+import toast from 'react-hot-toast';
+import { useSearchParams } from 'react-router-dom';
+import CustomPagination from './layouts/CustomPagination';
 
 const Home = () => {
-	const { data, isLoading } = useGetBooksQuery();
+	let [searchParams] = useSearchParams();
+	let page = searchParams.get("page") || 1;
+	const params = { page };
+	const { data, isLoading, error, isError } = useGetBooksQuery(params);
+
+	useEffect(() => {
+		if (isError) {
+			toast.error(error?.data?.message);
+		}
+	}, [error])
 
 	if (isLoading) return <Loader />
 
@@ -23,6 +35,10 @@ const Home = () => {
 							))}
 						</div>
 					</section>
+					<CustomPagination 
+						resPerPage={data?.resPerPage}
+						filteredBooksCount={data?.filteredBooksCount}
+					/>
 				</div>
 			</div>
 		</>

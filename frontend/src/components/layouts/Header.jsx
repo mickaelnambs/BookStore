@@ -1,13 +1,14 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const Header = () => {
     return (
         <nav class="navbar navbar-expand-lg bg-light">
             <div className="col-12 col-md-3 ps-5">
                 <div className="navbar-brand">
-                    <a href="/" style={{ textDecoration: "none" }}>
+                    <Link to={'/'} style={{ textDecoration: "none" }}>
                         <b>BookStore</b>
-                    </a>
+                    </Link>
                 </div>
             </div>
             <div className="col-12 col-md-6 mt-2 mt-md-0">

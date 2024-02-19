@@ -6,9 +6,17 @@ export const bookApi = createApi({
     keepUnusedDataFor: 30,
     endpoints: (builder) => ({
         getBooks: builder.query({
-            query: (params) => "/books"
+            query: (params) => ({
+                url: "/books",
+                params: {
+                    page: params?.page
+                }
+            })
         }),
+        getBookDetails: builder.query({
+            query: (id) => `/books/${id}`
+        })
     }),
 });
 
-export const { useGetBooksQuery } = bookApi;
+export const { useGetBooksQuery, useGetBookDetailsQuery } = bookApi;
