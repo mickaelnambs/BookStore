@@ -9,7 +9,12 @@ export const bookApi = createApi({
             query: (params) => ({
                 url: "/books",
                 params: {
-                    page: params?.page
+                    page: params?.page,
+                    keyword: params?.keyword,
+                    category: params?.category,
+                    ratings: params?.ratings,
+                    "price[gte]": params.min,
+                    "price[lte]": params.max,
                 }
             })
         }),
